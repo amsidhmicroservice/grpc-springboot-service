@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.amsidh.mvc.model";
+import "address-service.proto";
+
+service PersonService {
+  rpc GetPerson (PersonIdRequest) returns (PersonResponse);
+  rpc CreatePerson (PersonRequest) returns (PersonResponse);
+}
+
+message PersonRequest {
+  int64 id = 1;
+  string name = 2;
+  AddressesRequest addresses=3;
+}
+
+message PersonIdRequest{
+  int64 personId = 1;
+}
+
+message PersonResponse {
+  int64 id = 1;
+  string name = 2;
+  AddressesResponse addresses=3;
+}
+

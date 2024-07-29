@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.amsidh.mvc.model";
+
+service AddressService {
+  rpc GetAddress (AddressIdRequest) returns (AddressResponse);
+  rpc CreateAddress (AddressRequest) returns (AddressResponse);
+  rpc SaveAddresses (AddressesRequest) returns (AddressesResponse);
+  rpc GetAllAddressByPersonId (AddressPersonIdRequest) returns (AddressesResponse);
+}
+
+message AddressIdRequest {
+  int64 id = 1;
+}
+
+message AddressPersonIdRequest {
+  int64 id = 1;
+}
+message AddressRequest {
+  int64 id = 1;
+  int64 personId = 2; // Foreign key
+  string address = 3;
+}
+
+message AddressResponse {
+  int64 id = 1;
+  int64 personId = 2;
+  string address = 3;
+}
+
+
+message AddressesRequest {
+  repeated AddressRequest addresses = 1;
+}
+
+message AddressesResponse {
+  repeated AddressResponse addresses = 1;
+}
